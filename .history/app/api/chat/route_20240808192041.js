@@ -32,12 +32,12 @@ export async function POST(req) {
                 { role: "system", content: systemPrompt },
                 ...data.messages
             ],
-            model: "gpt-3.5-turbo",
+            model: "gpt-3.5-turbo", // Ensure this model is available in your OpenAI plan
         });
 
         return NextResponse.json({ message: completion.choices[0].message.content }, { status: 200 });
     } catch (error) {
-        console.error("Error:", error.message);
-        return NextResponse.json({ error: "Failed to get response from OpenAI", details: error.message }, { status: 500 });
+        console.error("Error:", error);
+        return NextResponse.json({ error: "Failed to get response from OpenAI" }, { status: 500 });
     }
 }

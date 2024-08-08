@@ -33,8 +33,8 @@ export default function Home() {
     alignItems="center"
 
     >
-      <Stack direction={'column'} width = "500px" height = "700px" border="1px solid black" p={2} spacing={3}>
-        <Stack direction={'column'} spacing={2} flexGrow={1} overflow= "auto" maxHeight="100%">
+      <Stack direction={'column'} width = "500px" height = "700px" border="1px solid black">
+        <Stack direction={'column'} spacing={2} flexGrow={1}>
           {
             messages.map((message, index) => (
               <Box
@@ -46,7 +46,7 @@ export default function Home() {
                 bgcolor={message.role === 'assistant' ? 'primary.main' : 'secondary.main' }
                 color= "white"
                 borderRadius={16}
-                p={3}
+                p={5}
                 >
                   {message.content}
                 </Box>
