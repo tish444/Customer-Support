@@ -16,17 +16,16 @@ export async function POST(req) {
 
     const openai = new OpenAI({ apiKey });
     const data = await req.json();
-    console.log(data)
-    // const completion = await openai.chat.completions.create({
-    //     messages: [
-    //         { role: "system", content: systemPrompt},
-    //         { role: "user", content: "Who won the world series in 2020?" },
-    //         { role: "assistant", content: "The Los Angeles Dodgers won the World Series in 2020." },
-    //         { role: "user", content: "Where was it played?" }
-    //     ],
-    //     model: "gpt-3.5-turbo", // Changed the model to gpt-3.5-turbo
-    // });
+  
+    const completion = await openai.chat.completions.create({
+        messages: [
+            { role: "system", content: systemPrompt},
+            ...data
+        ],
+        model: "gpt-3.5-turbo", // Changed the model to gpt-3.5-turbo
+    });
 
-    // console.log(completion.choices[0].message.content);
-    return NextResponse.json({ message: 'Hello from the server!' });
+    console.log();
+    return NextResponse.json({ message: completion.choices[0].message.content},
+        {status: 200},);
 }
